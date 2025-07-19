@@ -12,3 +12,7 @@ docs/
 
 # Dotenv file
 .env
+
+# Custom Deployment
+deploy.sh
+shell-scripts
