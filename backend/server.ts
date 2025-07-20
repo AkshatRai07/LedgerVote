@@ -36,6 +36,23 @@ app.get("/proposals", async (req, res) => {
   }
 })
 
+app.get("/proposals/id/:id", async (req, res) => {
+  try {
+    const id = req.params.id
+    const proposal = await ProposalModel.find({ _id: id })
+    if (!proposal) {
+      return res.status(404).json({ error: "Proposal not found" });
+    }
+    res.json(proposal)
+  } catch (error) {
+    if (error instanceof Error) {
+      res.status(500).json({ error: error.message })
+    } else {
+      res.status(500).json({ error: "Unknown error occurred" })
+    }
+  }
+})
+
 app.get("/proposals/creator/:creator", async (req, res) => {
   try {
     const { sortBy = "proposalCreatedAt", order = "desc" } = req.query

@@ -3,3 +3,7 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.select-style {
+  @apply font-bold border-none rounded-4xl px-3 py-2 focus:outline-none shadow-md shadow-gray-200 transition-transform duration-200 ease-in-out hover:scale-105;
+}
