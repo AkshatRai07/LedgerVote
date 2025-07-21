@@ -6,7 +6,7 @@ import Link from 'next/link';
 import ProposalHandler from './ProposalHandler';
 import ProposalCard from './ProposalCard';
 
-const API_URL = process.env.API_URL || 'http://localhost:4000';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
 
 type Proposal = {
   _id : string;
@@ -89,9 +89,12 @@ const HomePage = () => {
           </select>
         </div>
 
-        <div className="select-style mt-6 mb-2 mr-8">
-          <Link href="/createProposal">Create Proposal</Link>
-        </div>
+        <Link
+          href="/createProposal"
+          className="font-bold border-none rounded-4xl px-3 py-2 focus:outline-none shadow-md shadow-gray-200 transition-transform duration-200 ease-in-out hover:scale-105 mt-6 mb-2 mr-8 active:scale-95 inline-block"
+          >
+          Create Proposal
+        </Link>
       </div>
 
       <div className="px-6 py-4">

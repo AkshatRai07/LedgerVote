@@ -11,6 +11,8 @@ type Proposal = {
   proposalHash : string;
 };
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
+
 export default function ProposalDetailsPage() {
   const params = useParams();
   const proposalId = params.id;
@@ -18,7 +20,7 @@ export default function ProposalDetailsPage() {
   const [proposal, setProposal] = useState<Proposal | null>(null);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/proposals/id/${proposalId}`)
+    fetch(`${API_URL}/proposals/id/${proposalId}`)
       .then(res => res.json())
       .then(setProposal);
   }, [proposalId]);
