@@ -38,13 +38,13 @@
 
 1. Open a terminal in the `contracts` folder. Run Anvil (local EVM node):
 
-    ```
+    ```bash
     anvil
     ```
 
 2. Open a second terminal in the same `contracts` folder and build and deploy the contracts:
 
-    ```
+    ```bash
     forge clean
     forge build
     forge script script/Ballot.s.sol --fork-url http://127.0.0.1:8545 --broadcast --private-key ac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
@@ -54,7 +54,7 @@
 
 1. In the `backend` folder, create a `.env` file including these environment variables:
 
-    ```
+    ```env
     PORT=4000
     FRONTEND_URL=http://localhost:3000
     MONGODB_URI=<your-mongodb-uri>
@@ -62,7 +62,7 @@
 
 2. Run the backend server:
 
-    ```
+    ```bash
     npx ts-node server.ts
     ```
 
@@ -70,7 +70,7 @@
 
 1. In the `frontend` folder, create a `.env` file including:
 
-    ```
+    ```env
     NEXT_PUBLIC_PROJECT_ID=<your-project-id-from-dashboard.reown.com>
     NEXT_PUBLIC_API_URL=http://localhost:4000
     NEXT_PUBLIC_CONTRACT_ADDRESS=0x5FbDB2315678afecb367f032d93F642f64180aa3
@@ -78,7 +78,7 @@
 
 2. Run the frontend:
 
-    ```
+    ```bash
     npm run dev
     ```
 
@@ -86,26 +86,30 @@
 
 ## Environment Variables
 
-| Variable                | Description                                   | Location         |
-|-------------------------|-----------------------------------------------|------------------|
-| `SEPOLIA_RPC_URL`       | RPC URL for Sepolia testnet                    | contracts/.env   |
-| `METAMASK_PRIVATE_KEY`  | Private key for wallet deployment              | contracts/.env   |
-| `ANVIL_ACCOUNT_ONE_PRIVATE_KEY` | Private key for local Anvil account     | contracts/.env   |
-| `ETHERSCAN_API_KEY`     | Etherscan API Key for contract verification    | contracts/.env   |
-| `PORT`                  | Backend server port (default 4000)             | backend/.env     |
-| `FRONTEND_URL`          | URL where frontend runs (e.g., http://localhost:3000) | backend/.env     |
-| `MONGODB_URI`           | Connection string for MongoDB database         | backend/.env     |
-| `NEXT_PUBLIC_PROJECT_ID`| Project ID from reown dashboard for wallet connections | frontend/.env    |
-| `NEXT_PUBLIC_API_URL`   | Backend API URL for frontend requests           | frontend/.env    |
-| `NEXT_PUBLIC_CONTRACT_ADDRESS` | Deployed smart contract address          | frontend/.env    |
+| Variable                          | Description                                              | Location         |
+|----------------------------------|----------------------------------------------------------|------------------|
+| `SEPOLIA_RPC_URL`                | RPC URL for Sepolia testnet                             | contracts/.env   |
+| `METAMASK_PRIVATE_KEY`           | Private key for wallet deployment                       | contracts/.env   |
+| `ANVIL_ACCOUNT_ONE_PRIVATE_KEY`  | Private key for local Anvil account                     | contracts/.env   |
+| `ETHERSCAN_API_KEY`              | Etherscan API Key for contract verification             | contracts/.env   |
+| `PORT`                           | Backend server port (default 4000)                      | backend/.env     |
+| `FRONTEND_URL`                   | URL where frontend runs (e.g., http://localhost:3000)   | backend/.env     |
+| `MONGODB_URI`                    | Connection string for MongoDB database                  | backend/.env     |
+| `NEXT_PUBLIC_PROJECT_ID`         | Project ID from Reown dashboard for wallet connections  | frontend/.env    |
+| `NEXT_PUBLIC_API_URL`            | Backend API URL for frontend requests                   | frontend/.env    |
+| `NEXT_PUBLIC_CONTRACT_ADDRESS`   | Deployed smart contract address                         | frontend/.env    |
 
 ## Deployment
 
 1. Deploy your smart contracts to the desired network and note the contract address.
-
 2. Configure backend environment variables appropriately and deploy your backend server.
-
 3. Configure frontend environment variables with the backend URL and contract address, then build and deploy the frontend.
+
+### ✅ Live Deployments
+
+- **Frontend:** [https://ledger-vote.vercel.app](https://ledger-vote.vercel.app)  
+- **Backend API:** [https://ledgervote-api.onrender.com](https://ledgervote-api.onrender.com)  
+- **Smart Contract (Sepolia):** [0xA29d68f82AF99A7a22FC012294aBCa90462a7dce](https://sepolia.etherscan.io/address/0xA29d68f82AF99A7a22FC012294aBCa90462a7dce) on Etherscan.
 
 ## Usage
 
@@ -116,4 +120,4 @@
 
 ## License
 
-MIT © Akshat Rai
+MIT © 2025 Akshat Rai
