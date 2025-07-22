@@ -1,4 +1,3 @@
-// TypeScript type for clarity:
 type SaveProposalArgs = {
   proposalCreator : string;
   proposalCreatedAt : Date;
@@ -8,9 +7,11 @@ type SaveProposalArgs = {
   proposalHash : string;
 }
 
+type ProposalOnMongoResponse = SaveProposalArgs & { _id: string, __v?: number };
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL
 
-async function proposalOnMongo(proposal: SaveProposalArgs): Promise<any> {
+async function proposalOnMongo(proposal: SaveProposalArgs): Promise<ProposalOnMongoResponse> {
   const response = await fetch(`${API_URL}/proposals`, {
     method: "POST",
     headers: {

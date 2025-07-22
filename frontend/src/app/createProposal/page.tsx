@@ -2,6 +2,7 @@
 
 import { getProposalHash, proposalOnChain, proposalOnMongo } from '@/components/createProposal/index';
 import { ConnectButton } from '@rainbow-me/rainbowkit'
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { FormEvent, useEffect, useState } from 'react'
 import { useAccount, usePublicClient, useWriteContract } from 'wagmi'
@@ -12,7 +13,7 @@ const CreateProposal = () => {
   const [options, setOptions] = useState(['', ''])
   const [error, setError] = useState('')
   const [expiry, setExpiry] = useState<string>('');
-  const [minValueToVote, setMinValueToVote] = useState(0.005)
+  const [minValueToVote, setMinValueToVote] = useState("0.005");
   const [minExpiry, setMinExpiry] = useState('');
   const { address } = useAccount();
   const router = useRouter();
@@ -56,8 +57,6 @@ const CreateProposal = () => {
       expiryInt = BigInt(Math.floor(new Date(expiry).getTime() / 1000));
     }
 
-    console.log({ title, options: filledOptions })
-
     const proposalHash = getProposalHash(address, expiryInt, title, options)
 
     try {
@@ -77,8 +76,12 @@ const CreateProposal = () => {
       setOptions(['','']);
       router.push("/");
 
-    } catch (error: any) {
-      setError(error?.message || "Failed to submit proposal.");
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError(error.message || "Failed to submit proposal.");
+      } else {
+        setError("Failed to submit proposal.");
+      }
     }
   }
 
@@ -88,9 +91,11 @@ const CreateProposal = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center">
-      <header className="flex items-center justify-between px-6 py-4 w-[100vw] bg-white shadow">
-        <span className="font-bold text-xl text-blue-700">Ledger Vote</span>
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center w-full">
+      <header className="flex items-center justify-between px-6 py-4 w-full bg-white shadow">
+        <Link href="/">
+          <span className="font-bold text-xl text-blue-700">Ledger Vote</span>
+        </Link>
         <ConnectButton />
       </header>
 
@@ -138,7 +143,7 @@ const CreateProposal = () => {
             <input
               className="create-proposal-form-style"
               value={minValueToVote}
-              onChange={e => setMinValueToVote(parseFloat(e.target.value))}
+              onChange={e => setMinValueToVote(e.target.value)}
               placeholder="Enter minimum value to vote"
               required
             />

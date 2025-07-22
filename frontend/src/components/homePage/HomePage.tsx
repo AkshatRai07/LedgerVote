@@ -45,8 +45,13 @@ const HomePage = () => {
         const r = await fetch(url);
         if (!r.ok) throw new Error('Error loading proposals');
         setProposals(await r.json());
-      } catch (err: any) {
-        setError(err.message);
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err?.message);
+        }
+        else {
+          setError("Unknown error has occures")
+        }
       } finally {
         setLoading(false);
       }
@@ -72,18 +77,18 @@ const HomePage = () => {
             onChange={e => setCreator(e.target.value)}
           />
 
-          <select className="select-style" value={filter} onChange={e => setFilter(e.target.value as any)}>
+          <select className="select-style" value={filter} onChange={e => setFilter(e.target.value as 'all' | 'active' | 'expired')}>
             <option className="select-style" value="all">All Proposals</option>
             <option className="select-style" value="active">Active Only</option>
             <option className="select-style" value="expired">Expired Only</option>
           </select>
 
-          <select className="select-style" value={sortBy} onChange={e => setSortBy(e.target.value as any)}>
+          <select className="select-style" value={sortBy} onChange={e => setSortBy(e.target.value as 'proposalCreatedAt' | 'proposalExpiry')}>
             <option className="select-style" value="proposalCreatedAt">Sort by Created Time</option>
             <option className="select-style" value="proposalExpiry">Sort by Expiry</option>
           </select>
 
-          <select className="select-style" value={order} onChange={e => setOrder(e.target.value as any)}>
+          <select className="select-style" value={order} onChange={e => setOrder(e.target.value as 'asc' | 'desc')}>
             <option className="select-style" value="desc">Descending</option>
             <option className="select-style" value="asc">Ascending</option>
           </select>
@@ -98,21 +103,28 @@ const HomePage = () => {
       </div>
 
       <div className="px-6 py-4">
-        {loading && ProposalHandler("Loading...")}
-        {error && ProposalHandler(error)}
-        {!loading && !proposals.length && ProposalHandler("No proposals found.")}
-        {proposals.map((p) => (
-          <Link
-            key={p._id}
-            href={`/proposalDetails/${p._id}`}
-            className="block mb-4"
-            style={{ textDecoration: 'none' }} // Remove default underline, optional
-          >
-            <div className="bg-white px-4 py-3 rounded shadow cursor-pointer hover:shadow-lg transition-shadow">
-              {ProposalCard(p)}
-            </div>
-          </Link>
-        ))}
+        {loading ? (
+          ProposalHandler("Loading...")
+        ) : error ? (
+          ProposalHandler(error)
+        ) : proposals.length === 0 ? (
+          ProposalHandler("No proposals found.")
+        ) : (
+          <div className="flex flex-col items-center">
+            {proposals.map((p) => (
+              <Link
+                key={p._id}
+                href={`/proposalDetails/${p._id}`}
+                className="block mb-4"
+                style={{ textDecoration: 'none' }}
+              >
+                <div className="bg-white px-4 py-3 rounded-2xl shadow cursor-pointer transition-transform ease-in-out hover:scale-[1.01] w-[80vw]">
+                  {ProposalCard(p)}
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

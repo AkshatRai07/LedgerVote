@@ -11,8 +11,22 @@ type Proposal = {
 };
 
 const ProposalCard = (proposal : Proposal) => {
+
+  const ActivityCard = () => {
+    if (new Date(proposal.proposalExpiry) > new Date()) {
+      return <div className="text-green-500 font-sans font-semibold">Active</div>
+    } else {
+      return <div className="text-red-500 font-sans font-semibold">Expired</div>
+    }
+  }
+
   return (
-    <div>ProposalCard</div>
+    <div className="flex flex-col">
+      <div className="font-semibold font-sans break-words">
+        {proposal.proposalTitle}
+      </div>
+      <ActivityCard />
+    </div>
   )
 }
 
