@@ -15,5 +15,7 @@ contract BallotScript is Script {
         ballot = new Ballot();
 
         vm.stopBroadcast();
+
+        console.log("Ballot deployed at:", address(ballot));
     }
 }
