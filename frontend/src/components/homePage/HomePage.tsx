@@ -60,10 +60,10 @@ const HomePage = () => {
   }, [creator, filter, sortBy, order]);
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 to-purple-900">
       
-      <header className="flex items-center justify-between px-6 py-4 bg-white shadow">
-        <span className="font-bold text-xl text-blue-700">Ledger Vote</span>
+      <header className="flex items-center justify-between px-6 py-4 bg-slate-900 shadow-2xl/10 shadow-neutral-50">
+        <span className="font-bold text-xl text-blue-600">Ledger Vote</span>
         <ConnectButton />
       </header>
 
@@ -96,7 +96,7 @@ const HomePage = () => {
 
         <Link
           href="/createProposal"
-          className="font-bold border-none rounded-4xl px-3 py-2 focus:outline-none shadow-md shadow-gray-200 transition-transform duration-200 ease-in-out hover:scale-105 mt-6 mb-2 mr-8 active:scale-95 inline-block"
+          className="font-bold bg-white rounded-4xl px-3 py-2 focus:outline-none shadow-md shadow-gray-200 transition-transform duration-200 ease-in-out hover:scale-105 mt-6 mb-2 mr-8 active:scale-95 inline-block"
           >
           Create Proposal
         </Link>

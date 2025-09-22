@@ -91,8 +91,8 @@ const CreateProposal = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center w-full">
-      <header className="flex items-center justify-between px-6 py-4 w-full bg-white shadow">
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center w-full bg-gradient-to-br from-slate-900 to-purple-900">
+      <header className="flex items-center justify-between px-6 py-4 w-full bg-slate-900 shadow-2xl/10 shadow-neutral-50">
         <Link href="/">
           <span className="font-bold text-xl text-blue-700">Ledger Vote</span>
         </Link>
@@ -102,7 +102,7 @@ const CreateProposal = () => {
       <div className="w-[60vw] flex flex-col my-12">
         <form className="flex flex-col gap-6" onSubmit={handleProposalSubmit}>
           <div className="flex flex-col gap-2">
-            <label className="font-semibold">Title</label>
+            <label className="font-semibold text-neutral-300">Title</label>
             <input
               className="create-proposal-form-style"
               value={title}
@@ -112,7 +112,7 @@ const CreateProposal = () => {
             />
           </div>
 
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 text-neutral-300">
             <label className="font-semibold">Options</label>
             {options.map((opt, idx) => (
               <input
@@ -126,7 +126,7 @@ const CreateProposal = () => {
             ))}
           </div>
 
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 text-neutral-300">
             <label className="font-semibold">Expiry</label>
             <input
               type="datetime-local"
