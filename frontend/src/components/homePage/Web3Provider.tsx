@@ -2,14 +2,14 @@
 
 import { ReactNode } from "react";
 import { WagmiProvider, http } from "wagmi";
-import { sepolia, anvil } from "wagmi/chains";
+import { sepolia } from "wagmi/chains";
 import { RainbowKitProvider, getDefaultConfig } from "@rainbow-me/rainbowkit";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
 const config = getDefaultConfig({
   appName: "Ledger Vote",
   projectId: process.env.NEXT_PUBLIC_PROJECT_ID || "",
-  chains: [sepolia, anvil],
+  chains: [sepolia],
   ssr: true,
   transports: {
     [sepolia.id]: http(process.env.NEXT_PUBLIC_ALCHEMY_SEPOLIA_URL),
