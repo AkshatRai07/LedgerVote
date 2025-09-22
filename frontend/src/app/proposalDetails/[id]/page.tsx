@@ -189,7 +189,7 @@ export default function ProposalDetailsPage() {
           <h1 className="text-4xl font-bold mb-4 break-words">{proposal.proposalTitle}</h1>
           
           <div className="space-y-2 text-gray-700 mb-6">
-            <p><span className="font-semibold">Created By:</span> {proposal.proposalCreator}</p>
+            <p><span className="font-semibold">Created By:</span>{' '}<span className="break-all">{proposal.proposalCreator}</span></p>
             <p><span className="font-semibold">Created At:</span> {new Date(proposal.proposalCreatedAt).toLocaleString()}</p>
             <p><span className="font-semibold">Expires At:</span> {new Date(proposal.proposalExpiry).toLocaleString()}</p>
             <p>
